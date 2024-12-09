@@ -1,36 +1,48 @@
 #!/bin/sh
 
-SESH_NAME="main"
-CONFIGS_SESH="configs"
+TOOLS="tools"
+CONFIGS="configs"
+TEST="test"
 
-tmux has-session -t $SESH_NAME 2>/dev/null
-
-if [ $? != 0 ]; then
-
-	tmux new-session -d -s $SESH_NAME -n zsh
-
-	tmux new-window -t $SESH_NAME -n mc
-	tmux send-keys -t $SESH_NAME:mc "sudo mc" Enter
-
-	tmux new-window -t $SESH_NAME -n htop
-	tmux send-keys -t $SESH_NAME:htop "htop" Enter
-
-	tmux select-window -t $SESH_NAME:mc
-fi
-
-tmux has-session -t $CONFIGS_SESH 2>/dev/null
+tmux has-session -t $TOOLS 2>/dev/null
 
 if [ $? != 0 ]; then
 
-	tmux new-session -d -s $CONFIGS_SESH -n "nvim"
-	tmux send-keys -t $CONFIGS_SESH:nvim "cd ~/.config/nvim/" Enter
-	tmux send-keys -t $CONFIGS_SESH:nvim "nvim ." Enter
+	tmux new-session -d -s $TOOLS -n zsh
 
-    tmux new-window -t $CONFIGS_SESH -n "tmux"
-	tmux send-keys -t $CONFIGS_SESH:tmux "cd ~/.config/tmux/" Enter
-	tmux send-keys -t $CONFIGS_SESH:tmux "nvim ." Enter
+	tmux new-window -t $TOOLS -n mc
+	tmux send-keys -t $TOOLS:mc "sudo mc" Enter
 
-	tmux select-window -t $CONFIGS_SESH:nvim
+	tmux new-window -t $TOOLS -n htop
+	tmux send-keys -t $TOOLS:htop "htop" Enter
+
+	tmux select-window -t $TOOLS:mc
 fi
 
-tmux attach-session -t $CONFIGS_SESH
+tmux has-session -t $CONFIGS 2>/dev/null
+
+if [ $? != 0 ]; then
+
+	tmux new-session -d -s $CONFIGS -n "nvim"
+	tmux send-keys -t $CONFIGS:1 "cd ~/.config/nvim/ && nvim ." Enter
+
+    tmux new-window -t $CONFIGS -n "tmux"
+	tmux send-keys -t $CONFIGS:2 "cd ~/.config/tmux/ && nvim ." Enter
+
+	tmux select-window -t $CONFIGS:nvim
+fi
+
+tmux has-session -t $TEST 2>/dev/null
+
+if [ $? != 0 ]; then
+
+	tmux new-session -d -s $TEST -n "nvim"
+	tmux send-keys -t $TEST:1 "cd ~/projects/test/react-test/eslint-pretier/ && nvim ." Enter
+
+    tmux new-window -t $TEST -n "zsh"
+	tmux send-keys -t $TEST:2 "cd ~/projects/test/react-test/eslint-pretier/" Enter
+
+	tmux select-window -t $TEST:nvim
+fi
+
+tmux attach-session -t $CONFIGS
