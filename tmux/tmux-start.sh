@@ -40,7 +40,7 @@ if [ $? != 0 ]; then
 	tmux send-keys -t $TEST:1 "cd ~/projects/test/react-test/eslint-pretier/ && nvim ." Enter
 
     tmux new-window -t $TEST -n "zsh"
-	tmux send-keys -t $TEST:2 "cd ~/projects/test/react-test/eslint-pretier/" Enter
+	tmux send-keys -t $TEST:2 "cd ~/projects/test/react-test/eslint-pretier/ && npm run dev" Enter
 
 	tmux select-window -t $TEST:nvim
 fi
