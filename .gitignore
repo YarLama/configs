@@ -1,5 +1,15 @@
 *
 
 !.gitignore
-!nvim/
+!nvim
 !nvim/**
+!tmux
+!tmux/**
+!dwm
+!dwm/**
+!slstatus
+!slstatus/**
+!dmenu
+!dmenu/**
+!st
+!st/**
