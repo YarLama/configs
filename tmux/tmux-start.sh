@@ -29,6 +29,15 @@ if [ $? != 0 ]; then
     tmux new-window -t $CONFIGS -n "tmux"
 	tmux send-keys -t $CONFIGS:2 "cd ~/.config/tmux/ && nvim ." Enter
 
+    tmux new-window -t $CONFIGS -n "dwm"
+	tmux send-keys -t $CONFIGS:3 "cd ~/.config/dwm/ && nvim ." Enter
+
+    tmux new-window -t $CONFIGS -n "st"
+	tmux send-keys -t $CONFIGS:4 "cd ~/.config/st/ && nvim ." Enter
+
+    tmux new-window -t $CONFIGS -n "slstatus"
+	tmux send-keys -t $CONFIGS:5 "cd ~/.config/slstatus/ && nvim ." Enter
+
 	tmux select-window -t $CONFIGS:nvim
 fi
 
