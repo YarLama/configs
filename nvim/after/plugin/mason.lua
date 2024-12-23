@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "lua_ls", "ts_ls" },
+    ensure_installed = { "lua_ls", "ts_ls", "eslint" },
 })
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -64,6 +64,10 @@ cmp.setup({
 })
 
 lspconfig.ts_ls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+lspconfig.eslint.setup({
     on_attach = on_attach,
     capabilities = capabilities,
 })
