@@ -5,7 +5,7 @@ require("mason-lspconfig").setup({
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require("lspconfig")
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
     vim.keymap.set("n", "<leader>vrn", function()
@@ -14,10 +14,7 @@ local on_attach = function(_, bufnr)
     vim.keymap.set("n", "<leader>vca", function()
         vim.lsp.buf.code_action()
     end, opts)
-    vim.keymap.set("n", "<leader>vd", function()
-        vim.lsp.buf.signature_help()
-    end, opts)
-    vim.keymap.set("i", "<C-h>", function()
+    vim.keymap.set("n", "<leader>vh", function()
         vim.lsp.buf.signature_help()
     end, opts)
     vim.keymap.set("n", "[d", function()
@@ -40,6 +37,9 @@ local on_attach = function(_, bufnr)
         vim.lsp.buf.hover()
     end, opts)
     vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, opts)
+
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
 end
 
 local cmp = require("cmp")
@@ -72,6 +72,8 @@ lspconfig.eslint.setup({
     capabilities = capabilities,
 })
 lspconfig.lua_ls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
     settings = {
         Lua = {
             diagnostics = {
