@@ -68,6 +68,7 @@ static const char getVol[] = "amixer get Master | tail -n1 | grep -Po '\\[\\K\\d
 
 static const struct arg args[] = {
 	/* function format          argument */
+    { uptime,        "|u: %s ", NULL},
 	{ keymap,        "| %s ", NULL},
 	{ disk_free,     "| '/' free: %s", "/"},
 	{ disk_used,     ", used: %s ", "/"},

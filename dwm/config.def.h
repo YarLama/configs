@@ -20,9 +20,9 @@ static const char *colors[][3] = {
 
 static const char *const autostart[] = {
 	"st", "-e", "zsh", "/home/yarlama/.config/tmux/tmux-start.sh", NULL,
+    "amnezia-vpn", NULL,
 	"google-chrome", NULL,
 	"telegram", NULL,
-	"amnezia-vpn", NULL,
 	NULL /* terminate */
 };
 

@@ -9,7 +9,9 @@ vim.keymap.set("n", "<leader>gg", function()
 end)
 
 require("telescope").setup({
-    defaults = {},
+    defaults = {
+        file_ignore_patterns = {"node_modules"}
+    },
     pickers = {
         find_files = {
             disable_devicons = true,
