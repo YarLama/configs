@@ -3,40 +3,41 @@ require("mason-lspconfig").setup({
     ensure_installed = { "lua_ls", "ts_ls", "eslint" },
 })
 
+local map = vim.keymap.set
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require("lspconfig")
 local on_attach = function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
-    vim.keymap.set("n", "<leader>vrn", function()
+    map("n", "<leader>vrn", function()
         vim.lsp.buf.rename()
     end, opts)
-    vim.keymap.set("n", "<leader>vca", function()
+    map("n", "<leader>vca", function()
         vim.lsp.buf.code_action()
     end, opts)
-    vim.keymap.set("n", "<leader>vh", function()
+    map("n", "<leader>vh", function()
         vim.lsp.buf.signature_help()
     end, opts)
-    vim.keymap.set("n", "[d", function()
+    map("n", "[d", function()
         vim.diagnostic.goto_next()
     end, opts)
-    vim.keymap.set("n", "]d", function()
+    map("n", "]d", function()
         vim.diagnostic.goto_prev()
     end, opts)
-    vim.keymap.set("n", "<leader>ve", function()
+    map("n", "<leader>ve", function()
         vim.diagnostic.open_float()
     end, opts)
 
-    vim.keymap.set("n", "gd", function()
+    map("n", "gd", function()
         vim.lsp.buf.definition()
     end, opts)
-    vim.keymap.set("n", "gi", function()
+    map("n", "gi", function()
         vim.lsp.buf.implementation()
     end, opts)
-    vim.keymap.set("n", "K", function()
+    map("n", "K", function()
         vim.lsp.buf.hover()
     end, opts)
-    vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, opts)
+    map("n", "gr", require("telescope.builtin").lsp_references, opts)
 
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
