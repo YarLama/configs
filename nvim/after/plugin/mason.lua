@@ -17,13 +17,13 @@ local handlerWithoutHints = {
 local on_attach = function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 
-	map("n", "<leader>vrn", function()
+	map("n", "<leader>lr", function()
 		vim.lsp.buf.rename()
 	end, opts)
-	map("n", "<leader>vca", function()
+	map("n", "<leader>la", function()
 		vim.lsp.buf.code_action()
 	end, opts)
-	map("n", "<leader>vh", function()
+	map("n", "<leader>ls", function()
 		vim.lsp.buf.signature_help()
 	end, opts)
 	map("n", "[d", function()
@@ -32,7 +32,7 @@ local on_attach = function(client, bufnr)
 	map("n", "]d", function()
 		vim.diagnostic.goto_prev()
 	end, opts)
-	map("n", "<leader>ve", function()
+	map("n", "<leader>lf", function()
 		vim.diagnostic.open_float()
 	end, opts)
 
@@ -45,7 +45,6 @@ local on_attach = function(client, bufnr)
 	map("n", "K", function()
 		vim.lsp.buf.hover()
 	end, opts)
-	map("n", "gr", require("telescope.builtin").lsp_references, opts)
 
 	client.server_capabilities.documentFormattingProvider = false
 	client.server_capabilities.documentRangeFormattingProvider = false
@@ -68,7 +67,7 @@ cmp.setup({
 		{ name = "ultisnips" },
 		{ name = "path" },
 	}, {
-		{ name = "buffer", keyword_length = 5 },
+		{ name = "buffer", keyword_length = 3 },
 	}),
 })
 
