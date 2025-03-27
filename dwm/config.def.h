@@ -38,7 +38,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance           title       tags mask     isfloating   monitor */
 	{"Google-chrome", "google-chrome", NULL, 1 << 1, 0, -1},
-    {"AmneziaVPN", "AmneziaVPN", NULL, 1 << 2, 0, -1},
+  {"AmneziaVPN", "AmneziaVPN", NULL, 1 << 2, 0, -1},
 	{"TelegramDesktop", "telegram", NULL, 1 << 4, 0, -1},
 };
 

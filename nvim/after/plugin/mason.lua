@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-	ensure_installed = { "lua_ls", "ts_ls", "eslint", "yamlls" },
+	ensure_installed = { "lua_ls", "ts_ls", "eslint", "yamlls", "cssls" },
 })
 
 local map = vim.keymap.set
@@ -136,4 +136,7 @@ lspconfig.yamlls.setup({
 		},
 	},
 	on_attach = on_attach_yaml,
+})
+lspconfig.cssls.setup({
+  capabilities = capabilities
 })
