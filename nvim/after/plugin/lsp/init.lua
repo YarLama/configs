@@ -1,4 +1,5 @@
 local M = {}
+local keymaps = dofile(vim.fn.stdpath("config").."/after/plugin/lsp/keymaps.lua")
 
 M.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -12,11 +13,11 @@ M.handlerWithoutHints = {
 }
 
 M.on_attach = function(_, bufnr)
-	require("keymaps").setup(bufnr)
+	keymaps.setup(bufnr)
 end
 
 M.on_attach_disable_native_format = function(client, bufnr)
-	require("keymaps").setup(bufnr)
+	keymaps.setup(bufnr)
 	client.server_capabilities.documentFormattingProvider = false
 	client.server_capabilities.documentRangeFormattingProvider = false
 end

@@ -1,5 +1,3 @@
-local shared = require("init")
-
 return {
 	settings = {
 		Lua = {
