@@ -1,5 +1,5 @@
 local lspconfig = require("lspconfig")
-local shared = dofile(vim.fn.stdpath('config') .. '/after/plugin/lsp/init.lua')
+local shared = dofile(vim.fn.stdpath("config") .. "/after/plugin/lsp/init.lua")
 
 local servers = {
 	"lua_ls",
