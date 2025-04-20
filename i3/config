@@ -48,8 +48,8 @@ exec --no-startup-id AmneziaVPN
 # ---------------------------MY APPS ASSIGN-------------------------------
 assign [class="kitty"] $ws1
 assign [class="Google-chrome"] $ws2
-assign [class="TelegramDesktop"] $ws5
-assign [class="AmneziaVPN"] $ws6
+assign [class="TelegramDesktop"] $ws3
+assign [class="AmneziaVPN"] $ws4
 # ---------------------------------------------------------------------------
 
 # Use pactl to adjust volume in PulseAudio.

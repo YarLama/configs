@@ -1,19 +1,11 @@
 *
 
 !.gitignore
-!nvim
-!nvim/**
-!tmux
-!tmux/**
-!dwm
-!dwm/**
-!slstatus
-!slstatus/**
-!dmenu
-!dmenu/**
-!st
-!st/**
-!scripts
-!scripts/**
-!i3
-!i3/**
+!nvim/**/*
+!tmux/**/*
+!dwm/**/*
+!slstatus/**/*
+!dmenu/**/*
+!st/**/*
+!scripts/**/*
+!i3/**/*
