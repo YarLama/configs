@@ -123,5 +123,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-        status_command i3status
+        font pango:Unifont Upper 14
+        tray_output none
+        status_command i3blocks -c ~/.config/i3blocks/config
 }

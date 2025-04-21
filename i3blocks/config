@@ -1,0 +1,26 @@
+markup=pango
+separator_block_width=30
+
+[amnezia_vpn]
+command=~/.config/i3blocks/scripts/check_amneziavpn.sh
+interval=2
+
+[keyboard]
+command=~/.config/i3blocks/scripts/keyboard_lang.sh
+interval=1
+
+[volume]
+command=~/.config/i3blocks/scripts/volume.sh
+interval=1
+
+[wifi]
+command=~/.config/i3blocks/scripts/wifi.sh
+interval=1
+
+[time]
+command=date '+%a %d %b %H:%M'
+interval=5
+
+[battery]
+command=~/.config/i3blocks/scripts/battery.sh 2>/tmp/i3bat.log
+interval=5
