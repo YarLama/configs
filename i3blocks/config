@@ -21,6 +21,10 @@ interval=1
 command=date '+%a %d %b %H:%M'
 interval=5
 
+[uptime]
+command=~/.config/i3blocks/scripts/uptime.sh
+interval=60
+
 [battery]
 command=~/.config/i3blocks/scripts/battery.sh 2>/tmp/i3bat.log
 interval=5
