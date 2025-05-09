@@ -24,7 +24,7 @@ SIGNAL=$(iwconfig "$INTERFACE" 2> /dev/null | grep -oP 'Signal level=\K[0-9-]+')
 
 if [ -z "$SSID"]; then
   color="#FF0000"
-  text="Disconnected"
+  text="No Wi-fi"
 else
   text="  $SSID"
 fi
