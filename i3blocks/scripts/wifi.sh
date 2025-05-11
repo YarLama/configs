@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-export PATH=$PATH:/sbin:/usr/sbin
+export PATH="$PATH:/sbin:/usr/sbin"
 INTERFACE=wlp2s0
 color="#FFFFFF"
 text=""
