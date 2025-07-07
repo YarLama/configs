@@ -2,6 +2,7 @@ local builtin = require("telescope.builtin")
 local map = vim.keymap.set
 map("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
 map("n", "<leader>fg", builtin.git_files, { desc = "Telescope find git files" })
+map("n", "<leader>ft", builtin.treesitter, { desc = "Telescope treesitter. find var and func in file" })
 map("n", "<leader>fh", builtin.help_tags, { desc = "Telescope find help info" })
 map("n", "<leader>fs", builtin.git_status, { desc = "Telescope view git files status" })
 map("n", "<leader>fc", builtin.git_commits, { desc = "Telescope view git commits" })
