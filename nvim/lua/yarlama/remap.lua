@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
 vim.g.mapleader = " "
-map("n", "<leader>e", vim.cmd.Ex)
+
 map("n", "L", vim.cmd.Lazy)
 
 map("v", "<C-c>", '"+y')
