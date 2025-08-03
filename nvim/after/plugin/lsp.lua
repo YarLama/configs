@@ -7,7 +7,6 @@ local servers = {
 	"eslint",
 	"yamlls",
 	"cssls",
-	"bashls",
 	"tailwindcss",
 }
 
