@@ -36,6 +36,9 @@ bindsym $mod+Escape exec --no-startup-id sudo /home/yarlama/.config/scripts/shut
 bindsym $mod+Shift+Escape exec --no-startup-id sudo /home/yarlama/.config/scripts/reboot.sh
 exec_always --no-startup-id setxkbmap -layout us,ru -option grp:alt_shift_toggle
 
+bindsym Print exec --no-startup-id flameshot gui  # Захват области + редактор
+bindsym Shift+Print exec --no-startup-id flameshot full --clipboard  # Весь экран → буфер
+
 bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up
