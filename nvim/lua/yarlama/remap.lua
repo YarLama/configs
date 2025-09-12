@@ -2,7 +2,7 @@ local map = vim.keymap.set
 
 vim.g.mapleader = " "
 
-map("n", "L", vim.cmd.Lazy)
+map("n", "<leader>L", vim.cmd.Lazy, {desc = "open Lazy"})
 
 map("v", "<C-c>", '"+y', { desc = "yanked to general clipboard (+ register)" })
 map("n", "<C-p>", '"+p', { desc = "paste from general clipboard (+ register)" })
