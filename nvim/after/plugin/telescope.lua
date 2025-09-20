@@ -6,7 +6,7 @@ map("n", "<leader>fr", function()
 end
 , { desc = "Telescope find all references, exclude declaration" })
 map("n", "<leader>rr", builtin.resume, { desc = "Telescope resume last search result" })
-map("n", "<leader>ft", builtin.treesitter, { desc = "Telescope treesitter. find var and func in file" })
+map("n", "<leader>ft", builtin.lsp_document_symbols, { desc = "Telescope lsp_document_symbols. Find documents symbols (vars, funcs, props, e.t.c)" })
 map("n", "<leader>fh", builtin.help_tags, { desc = "Telescope find help info" })
 map("n", "<leader>fs", builtin.git_status, { desc = "Telescope view git files status" })
 map("n", "<leader>fc", builtin.git_commits, { desc = "Telescope view git commits" })
