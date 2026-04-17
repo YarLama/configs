@@ -6,15 +6,21 @@ map("n", "<leader>fr", function()
 end
 , { desc = "Telescope find all references, exclude declaration" })
 map("n", "<leader>rr", builtin.resume, { desc = "Telescope resume last search result" })
-map("n", "<leader>ft", builtin.lsp_document_symbols, { desc = "Telescope lsp_document_symbols. Find documents symbols (vars, funcs, props, e.t.c)" })
+map("n", "<leader>ft", builtin.lsp_document_symbols,
+  { desc = "Telescope lsp_document_symbols. Find documents symbols (vars, funcs, props, e.t.c)" })
 map("n", "<leader>fh", builtin.help_tags, { desc = "Telescope find help info" })
 map("n", "<leader>fs", builtin.git_status, { desc = "Telescope view git files status" })
 map("n", "<leader>fc", builtin.git_commits, { desc = "Telescope view git commits" })
 map("n", "<leader>fb", builtin.git_branches, { desc = "Telescope view git branches" })
 map("n", "<leader>fu", "<cmd>Telescope undo<cr>", { desc = "Telescope undo extenstion" })
 map("n", "<leader>fg", function()
-  builtin.grep_string({ search = vim.fn.input("Grep > ") })
-end)
+  pcall(function()
+    builtin.grep_string({ search = vim.fn.input("Grep > ") })
+  end)
+end, { desc = "Telescop grep any string" })
+map("n", "<leader>fw", function()
+  builtin.grep_string({ search = vim.fn.expand("<cword>"), word_match = "-w" })
+end, { desc = "Telescop grep only cursor word" })
 
 require("telescope").setup({
   defaults = {
