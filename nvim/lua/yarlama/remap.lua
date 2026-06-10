@@ -1,4 +1,5 @@
 local map = vim.keymap.set
+local t_o = require("custom.term_output")
 
 vim.g.mapleader = " "
 
@@ -27,3 +28,8 @@ map("n", "<leader>x", '$a', { desc = "insert mode on first character" })
 map("n", "<leader>o", 'o<Esc>', { desc = "move text under cursor, without insert mode" })
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "move selected text up one position" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move selected text down one position" })
+
+-- custom remaps
+map("n", "<leader>tt", t_o.run_input_command, { desc = "execute command and put the result in a split window"})
+map("n", "<leader>tr", t_o.run_last_command, { desc = "execute last command and put the result in a split window"})
+map("n", "<leader>tq", t_o.close_window, { desc = "close the window with the command result"})
