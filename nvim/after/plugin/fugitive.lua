@@ -1,5 +1,6 @@
 local map = vim.keymap.set
 local get_cur_win = vim.api.nvim_get_current_win
+local is_win_exist = vim.api.nvim_win_is_valid
 local git_windows = {
   log = nil,
   status = nil
@@ -61,6 +62,16 @@ local function commit()
   local commitMessage = getUserInput("Commit message: ")
   if commitMessage and commitMessage ~= "" then
     vim.cmd("Git commit -m '" .. commitMessage .. "'")
+  end
+  if (is_win_exist(git_windows.status)) then
+    vim.api.nvim_set_current_win(git_windows.status)
+    local buf_id = vim.api.nvim_win_get_buf(git_windows.status)
+    local line_count = vim.api.nvim_buf_line_count(buf_id)
+    local target_line = 4
+    if line_count < target_line then
+      target_line = line_count
+    end
+    vim.api.nvim_win_set_cursor(git_windows.status, { target_line, 0})
   end
 end
 
