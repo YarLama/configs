@@ -66,12 +66,20 @@ local function commit()
   if (is_win_exist(git_windows.status)) then
     vim.api.nvim_set_current_win(git_windows.status)
     local buf_id = vim.api.nvim_win_get_buf(git_windows.status)
-    local line_count = vim.api.nvim_buf_line_count(buf_id)
-    local target_line = 4
-    if line_count < target_line then
-      target_line = line_count
+    local lines = vim.api.nvim_buf_get_lines(buf_id, 0, -1, false)
+    local target_word = "Unpushed"
+    local target_line = nil
+
+    for i, line in pairs(lines) do
+      if line:match("^" .. target_word) then
+        target_line = i
+        break
+      end
     end
-    vim.api.nvim_win_set_cursor(git_windows.status, { target_line, 0})
+
+    if target_line then
+      vim.api.nvim_win_set_cursor(git_windows.status, { target_line, 0 })
+    end
   end
 end
 
