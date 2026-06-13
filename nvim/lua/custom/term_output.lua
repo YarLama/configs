@@ -1,8 +1,13 @@
 local M = {}
 M.win_id = nil
 M.last_command = nil
+M.job_id = nil
 
 local function close_win_if_exist()
+  if M.job_id then
+    vim.fn.jobstop(M.job_id)
+    M.job_id = nil
+  end
   if M.win_id and vim.api.nvim_win_is_valid(M.win_id) then
     vim.api.nvim_win_close(M.win_id, true)
     M.win_id = nil
@@ -39,7 +44,7 @@ local function execute_job(input, direction)
   if vim.api.nvim_win_is_valid(old_win) then vim.api.nvim_set_current_win(old_win) end
 
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, { "Executing: " .. input, "" })
-  vim.fn.jobstart({ shell, shellcmd, input }, {
+  M.job_id = vim.fn.jobstart({ shell, shellcmd, input }, {
     stdout_buffered = true,
     stderr_buffered = true,
     on_stdout = function(_, data)
