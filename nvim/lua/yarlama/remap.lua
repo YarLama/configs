@@ -1,9 +1,10 @@
 local map = vim.keymap.set
 local t_o = require("custom.term_output")
+local text = require("custom.text")
 
 vim.g.mapleader = " "
 
-map("n", "<leader>L", vim.cmd.Lazy, {desc = "open Lazy"})
+map("n", "<leader>L", vim.cmd.Lazy, { desc = "open Lazy" })
 
 map("v", "<C-c>", '"+y', { desc = "yanked to general clipboard (+ register)" })
 map("n", "<C-p>", '"+p', { desc = "paste from general clipboard (+ register)" })
@@ -15,6 +16,12 @@ map("n", '<leader>r`', "ci`", { desc = "delete inside backtips quotes" })
 map("n", "<leader>r(", 'ci(', { desc = "delete inside () brackets" })
 map("n", "<leader>r[", 'ci[', { desc = "delete inside [] brackets" })
 map("n", "<leader>r{", 'ci{', { desc = "delete inside {} brackets" })
+map("n", "<leader>rs{", function()
+  text.delete_surround_by_char("{")
+end, { desc = "delete {} brackets" })
+map("n", "<leader>rs(", function()
+  text.delete_surround_by_char("(")
+end, { desc = "delete () brackets" })
 map("n", '<leader>v"', 'vi"', { desc = "selected text inside double quotes" })
 map("n", "<leader>v'", "vi'", { desc = "selected text inside single quotes" })
 map("n", '<leader>v`', "vi`", { desc = "selected text inside backtips quotes" })
@@ -30,6 +37,6 @@ map("v", "J", ":m '>+1<CR>gv=gv", { desc = "move selected text up one position" 
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move selected text down one position" })
 
 -- custom remaps
-map("n", "<leader>tt", t_o.run_input_command, { desc = "execute command and put the result in a split window"})
-map("n", "<leader>tr", t_o.run_last_command, { desc = "execute last command and put the result in a split window"})
-map("n", "<leader>tq", t_o.close_window, { desc = "close the window with the command result"})
+map("n", "<leader>tt", t_o.run_input_command, { desc = "execute command and put the result in a split window" })
+map("n", "<leader>tr", t_o.run_last_command, { desc = "execute last command and put the result in a split window" })
+map("n", "<leader>tq", t_o.close_window, { desc = "close the window with the command result" })
