@@ -1,5 +1,6 @@
 local M = {}
 M.win_id = nil
+M.buf_id = nil
 M.last_command = nil
 M.job_id = nil
 
@@ -11,6 +12,10 @@ local function close_win_if_exist()
   if M.win_id and vim.api.nvim_win_is_valid(M.win_id) then
     vim.api.nvim_win_close(M.win_id, true)
     M.win_id = nil
+  end
+  if M.buf_id and vim.api.nvim_buf_is_valid(M.buf_id) then
+    vim.api.nvim_buf_delete(M.buf_id, { force = true })
+    M.buf_id = nil
   end
 end
 
@@ -41,6 +46,7 @@ local function execute_job(input, direction)
   vim.wo[win].relativenumber = false
 
   M.win_id = win
+  M.buf_id = buf
   if vim.api.nvim_win_is_valid(old_win) then vim.api.nvim_set_current_win(old_win) end
 
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, { "Executing: " .. input, "" })
@@ -48,13 +54,19 @@ local function execute_job(input, direction)
     stdout_buffered = true,
     stderr_buffered = true,
     on_stdout = function(_, data)
-      if data and #data > 0 then vim.api.nvim_buf_set_lines(buf, -1, -1, false, data) end
+      if data and #data > 0 and vim.api.nvim_buf_is_valid(buf) then
+        vim.api.nvim_buf_set_lines(buf, -1, -1, false, data)
+      end
     end,
     on_stderr = function(_, data)
-      if data and #data > 0 then vim.api.nvim_buf_set_lines(buf, -1, -1, false, data) end
+      if data and #data > 0 and vim.api.nvim_buf_is_valid(buf) then
+        vim.api.nvim_buf_set_lines(buf, -1, -1, false, data)
+      end
     end,
     on_exit = function(_, code)
-      vim.api.nvim_buf_set_lines(buf, -1, -1, false, { "", "[Process completed with code: " .. code .. "]" })
+      if vim.api.nvim_buf_is_valid(buf) then
+        vim.api.nvim_buf_set_lines(buf, -1, -1, false, { "", "[Process completed with code: " .. code .. "]" })
+      end
     end
   })
 end
