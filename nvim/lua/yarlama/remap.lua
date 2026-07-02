@@ -40,3 +40,15 @@ map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move selected text down one position
 map("n", "<leader>tt", t_o.run_input_command, { desc = "execute command and put the result in a split window" })
 map("n", "<leader>tr", t_o.run_last_command, { desc = "execute last command and put the result in a split window" })
 map("n", "<leader>tq", t_o.close_window, { desc = "close the window with the command result" })
+map("n", "<leader>nd", function()
+  vim.cmd('new')
+  vim.opt_local.buftype = 'nofile'
+  vim.opt_local.bufhidden = 'hide'
+  vim.opt_local.swapfile = false
+  vim.opt_local.virtualedit = 'all'
+  vim.opt_local.number = false
+  vim.opt_local.relativenumber = false
+  vim.cmd('normal! yy')
+  vim.cmd('normal! 20p')
+  vim.cmd('normal! gg0')
+end, { desc = "Create a draft window" })
