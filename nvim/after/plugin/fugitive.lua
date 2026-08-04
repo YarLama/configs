@@ -32,6 +32,29 @@ local function getUserInput(prompt)
   return result
 end
 
+local function set_cursor_on_word(win_id, target_word)
+  if is_win_exist(win_id) then
+    vim.api.nvim_set_current_win(win_id)
+
+    if not target_word then return end
+
+    local buf_id = vim.api.nvim_win_get_buf(win_id)
+    local lines = vim.api.nvim_buf_get_lines(buf_id, 0, -1, false)
+    local target_line = nil
+
+    for i, line in ipairs(lines) do
+      if line:match("^" .. target_word) then
+        target_line = i
+        break
+      end
+    end
+
+    if target_line then
+      vim.api.nvim_win_set_cursor(win_id, { target_line, 0 })
+    end
+  end
+end
+
 local function open_git()
   close_all_git_windows()
   vim.cmd("vertical Git")
@@ -45,6 +68,7 @@ local function open_git()
 
   if (git_windows.status) and vim.api.nvim_win_is_valid(git_windows.status) then
     vim.api.nvim_set_current_win(git_windows.status)
+    set_cursor_on_word(git_windows.status, "Unstaged")
   end
 
   print("Press " .. closeKey .. " to close Git window")
@@ -58,29 +82,13 @@ local function close_git()
   end
 end
 
+
 local function commit()
   local commitMessage = getUserInput("Commit message: ")
   if commitMessage and commitMessage ~= "" then
     vim.cmd("Git commit -m '" .. commitMessage .. "'")
   end
-  if (is_win_exist(git_windows.status)) then
-    vim.api.nvim_set_current_win(git_windows.status)
-    local buf_id = vim.api.nvim_win_get_buf(git_windows.status)
-    local lines = vim.api.nvim_buf_get_lines(buf_id, 0, -1, false)
-    local target_word = "Unpushed"
-    local target_line = nil
-
-    for i, line in pairs(lines) do
-      if line:match("^" .. target_word) then
-        target_line = i
-        break
-      end
-    end
-
-    if target_line then
-      vim.api.nvim_win_set_cursor(git_windows.status, { target_line, 0 })
-    end
-  end
+  set_cursor_on_word(git_windows.status, "Unpushed")
 end
 
 map("n", diffHeadKey, ":Gvdiffsplit<CR>", { desc = "Show diff current file with HEAD" })
