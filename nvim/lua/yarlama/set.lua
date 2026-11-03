@@ -1,25 +1,34 @@
-vim.opt.nu = true
-vim.opt.relativenumber = true
+local options = {
 
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
+  nu = true,
+  relativenumber = true,
 
-vim.opt.smartindent = true
+  tabstop = 2,
+  softtabstop = 2,
+  shiftwidth = 2,
+  expandtab = true,
+  smartindent = true,
 
-vim.opt.wrap = false
+  wrap = true,
+  linebreak = true,
+  breakindent = true,
+  showbreak = "↳ ",
 
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
+  hlsearch = false,
+  incsearch = true,
 
-vim.opt.termguicolors = true
+  termguicolors = true,
+  scrolloff = 8,
+  sidescrolloff = 0,
 
-vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 0
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+  splitright = true,
+  splitbelow = true,
 
-vim.opt.updatetime = 50
+  updatetime = 50,
+}
+
+for k, v in pairs(options) do
+  vim.opt[k] = v
+end
 
 vim.g.mapleader = " "

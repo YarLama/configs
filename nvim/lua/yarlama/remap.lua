@@ -35,6 +35,9 @@ map("n", "<leader>x", '$a', { desc = "insert mode on first character" })
 map("n", "<leader>o", 'o<Esc>', { desc = "move text under cursor, without insert mode" })
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "move selected text up one position" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move selected text down one position" })
+map({ "n", "v" }, "<Down>", "v:count == 0 ? 'gj' : 'j'",
+  { expr = true, silent = true, desc = "moving for wrapped string" })
+map({ "n", "v" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = "moving for wrapped string" })
 
 -- custom remaps
 map("n", "<leader>tt", t_o.run_input_command, { desc = "execute command and put the result in a split window" })
